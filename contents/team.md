@@ -1,4 +1,6 @@
 ## GRAND Working Group
+Text
+
 <div style="display: flex; justify-content: space-around;">
   <div style="flex: 1; padding-right: 10px;">
     * Zachary Neal (Michigan State University
