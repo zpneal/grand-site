@@ -9,9 +9,6 @@ Joe Labianca (University of Massachussets - Amherst) | Bernice Pescosolido (Indi
 Nicholas Landry (University of Virginia) | Christina Prell (University of Groningen)
 David Lazer (Northeastern University) | Andrea Sofia Teixeira (Northeastern University - London)
 
-<p></p>
-<p></p>
-<p></p>
 
 ## GRAND Consortium
 []() | []()
