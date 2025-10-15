@@ -14,4 +14,4 @@ David Lazer (Northeastern University) | Andrea Sofia Teixeira (Northeastern Univ
 ## GRAND Consortium
 []() | []()
 :--- | :---
-TBD | TBD
+TBD | &nbsp;
