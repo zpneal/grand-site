@@ -10,6 +10,8 @@ Nicholas Landry (University of Virginia) | Christina Prell (University of Gronin
 David Lazer (Northeastern University) | Andrea Sofia Teixeira (Northeastern University - London)
 
 <p></p>
+<p></p>
+<p></p>
 
 ## GRAND Consortium
 []() | []()
