@@ -1,14 +1,14 @@
 ### GRAND Working Group
-[]() | []()
+Chair: Zachary Neal (Michigan State University) | &nbsp;
 --- | ---
-Zachary Neal (Michigan State University, chair) | Miranda Lubbers (Autonomous University of Barcelona)
-Kathleen Carley (Carnegie Mellon University) | Jenna Watling Neal (Michigan State University)
-Noshir Contractor (Northwestern University) | Francisca Ortiz (Universidad Mayor (Chile))
-Manlio De Domenico (University of Padua) | Tiago Peixoto (Interdisciplinary Transformation University Austria)
-James Hollway (Geneva Graduate Institute) | Bernice Pescosolido (Indiana University)
-Joe Labianca (University of Massachussets - Amherst) | Christina Prell (University of Groningen)
-Nicholas Landry (University of Virginia) |Andrea Sofia Teixeira (Northeastern University - London)
-David Lazer (Northeastern University)
+Kathleen Carley (Carnegie Mellon University) | Miranda Lubbers (Autonomous University of Barcelona)
+Noshir Contractor (Northwestern University) | Jenna Watling Neal (Michigan State University)
+Manlio De Domenico (University of Padua) | Francisca Ortiz (Universidad Mayor (Chile))
+James Hollway (Geneva Graduate Institute) | Tiago Peixoto (Interdisciplinary Transformation University Austria)
+Joe Labianca (University of Massachussets - Amherst) | Bernice Pescosolido (Indiana University)
+Nicholas Landry (University of Virginia) | Christina Prell (University of Groningen)
+David Lazer (Northeastern University) |Andrea Sofia Teixeira (Northeastern University - London)
+
 
 ## GRAND Consortium
 IN FORMATION
