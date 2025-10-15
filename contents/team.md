@@ -1,6 +1,6 @@
 ### GRAND Working Group
 Chair: Zachary Neal (Michigan State University) | &nbsp;
---- | ---
+:--- | ---
 Kathleen Carley (Carnegie Mellon University) | Miranda Lubbers (Autonomous University of Barcelona)
 Noshir Contractor (Northwestern University) | Jenna Watling Neal (Michigan State University)
 Manlio De Domenico (University of Padua) | Francisca Ortiz (Universidad Mayor (Chile))
