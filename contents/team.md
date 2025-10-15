@@ -1,4 +1,4 @@
-### GRAND Working Group --
+### GRAND Working Group
 Chair: Zachary Neal (Michigan State University) | &nbsp;
 :--- | :---
 Zachary Neal (Michigan State University, chair)
@@ -10,9 +10,9 @@ Joe Labianca (University of Massachussets - Amherst) | Bernice Pescosolido (Indi
 Nicholas Landry (University of Virginia) | Christina Prell (University of Groningen)
 David Lazer (Northeastern University) | Andrea Sofia Teixeira (Northeastern University - London)
 
+<p></p>
 
-
-## GRAND Consortium --
+## GRAND Consortium
 []() | []()
 :--- | :---
 TBD | TBD
