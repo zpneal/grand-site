@@ -3,4 +3,6 @@ The **G**uidelines for **R**eporting **A**bout **N**etwork **D**ata (GRAND) aim 
 
 **$\rightarrow$ View the draft guidelines [HERE](https://raw.githubusercontent.com/zpneal/grand-site/main/contents/grand_draft.pdf)**
 
+**TEST [SURVEY](https://raw.githubusercontent.com/zpneal/grand-site/main/contents/grand.html)**
+
 If you would like to join the GRAND consortium and contribute to this project, please complete the brief questionnaire at https://tinyurl.com/help-with-GRAND.
