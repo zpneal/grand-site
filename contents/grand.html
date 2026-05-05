@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Custom GRAND Checklist</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 40px; }
+    .question { margin-bottom: 20px; }
+    button { padding: 10px 15px; font-size: 16px; }
+  </style>
+</head>
+<body>
+
+<h2>Guidelines for Reporting About Network Data</h2>
+
+The Guidelines for Reporting About Network Data (GRAND) provide guidance about the information that should always be reported in network research. The complete guidelines and instructions are available at <a href="https://www.grand-statement.org">https://www.grand-statement.org</a>. You can use this form to generate guidelines that are tailored to your network(s).
+
+<h4></h4>
+
+<form id="surveyForm">
+
+<h2>Data</h2>
+  <div class="question">
+    <label>The data are...</label><br>
+    <input type="radio" name="data" value="empirical" required> Empirical
+    <input type="radio" name="data" value="synthetic"> Synthetic
+  </div>
+
+  <div class="question">
+    <label>Could the collection or use of these data present any ethical concerns</label><br>
+    <input type="radio" name="ethics" value="yes" required> Yes
+    <input type="radio" name="ethics" value="no"> No
+  </div>
+
+  <div class="question">
+    <label>Do these data describe a longitudinal network measured at multiple temporal waves?</label><br>
+    <input type="radio" name="temporal" value="yes" required> Yes
+    <input type="radio" name="temporal" value="no"> No
+  </div>
+
+  <div class="question">
+    <label>Do these data describe a set of ego networks, or a set of similar networks each representing a different site? </label><br>
+    <input type="radio" name="multiple" value="yes" required> Yes
+    <input type="radio" name="multiple" value="no"> No
+  </div>
+
+  <div class="question">
+    <label>Do these data have an independent citation? </label><br>
+    <input type="radio" name="citation" value="yes" required> Yes
+    <input type="radio" name="citation" value="no"> No
+  </div>
+
+<h2>Nodes</h2>
+  <div class="question">
+    <label>Do the nodes represent more than one type of entity (i.e. is the network multi-modal)? </label><br>
+    <input type="radio" name="nodes" value="yes" required> Yes
+    <input type="radio" name="nodes" value="no"> No
+  </div>
+
+  <div class="question">
+    <label>Are any nodes that should be included in the network missing? </label><br>
+    <input type="radio" name="missing" value="yes" required> Yes
+    <input type="radio" name="missing" value="no"> No
+  </div>
+
+  <div class="question">
+    <label>Are nodes' minimum or maximum degree constrained by the data collection/generation process? </label><br>
+    <input type="radio" name="degree" value="yes" required> Yes
+    <input type="radio" name="degree" value="no"> No
+  </div>
+
+<h2>Edges</h2>
+  <div class="question">
+    <label>Do the edges represent more than one type of relationship (i.e. is the network multiplex or multilayer)? </label><br>
+    <input type="radio" name="edges" value="yes" required> Yes
+    <input type="radio" name="edges" value="no"> No
+  </div>
+
+  <div class="question">
+    <label>The edges are... </label><br>
+    <input type="radio" name="direction" value="directed" required> Directed
+    <input type="radio" name="direction" value="undirected"> Undirected
+  </div>
+
+  <div class="question">
+    <label>The edges are... </label><br>
+    <input type="radio" name="weight" value="weighted" required> Weighted
+    <input type="radio" name="weight" value="unweighted" required> Unweighted
+    <input type="radio" name="weight" value="signed" required> Signed
+  </div>
+
+  <div class="question">
+    <label>Does the network contain self-loops? </label><br>
+    <input type="radio" name="selfloops" value="yes" required> Yes
+    <input type="radio" name="selfloops" value="no"> No
+  </div>
+
+  <div class="question">
+    <label>Is the network a hypergraph? </label><br>
+    <input type="radio" name="hyper" value="yes" required> Yes
+    <input type="radio" name="hyper" value="no"> No
+  </div>
+
+<h2>Transformations</h2>
+  <div class="question">
+    <label>Were directed edges in raw data transformed into undirected edges? </label><br>
+    <input type="radio" name="symmetrized" value="yes" required> Yes
+    <input type="radio" name="symmetrized" value="no"> No
+  </div>
+
+  <div class="question">
+    <label>Were weighted edges in raw data transformed into unweighted edges? </label><br>
+    <input type="radio" name="dichotomized" value="yes" required> Yes
+    <input type="radio" name="dichotomized" value="no"> No
+  </div>
+
+  <div class="question">
+    <label>Was the network generated from two-mode or non-network data such that edges represent similarities, co-occurrences, or statistical associations? </label><br>
+    <input type="radio" name="projected" value="yes" required> Yes
+    <input type="radio" name="projected" value="no"> No
+  </div>
+
+  <div class="question">
+    <label>Were any nodes or edges that were present in raw data excluded from the network? </label><br>
+    <input type="radio" name="excluded" value="yes" required> Yes
+    <input type="radio" name="excluded" value="no"> No
+  </div>
+
+  <div class="question">
+    <label>Were any nodes or edges that were separate in raw data have aggregated in the network? </label><br>
+    <input type="radio" name="aggregated" value="yes" required> Yes
+    <input type="radio" name="aggregated" value="no"> No
+  </div>
+
+  <div class="question">
+    <label>Were any nodes or edges unmeasured in raw data, and their presence or absence was imputed or inferred in the network? </label><br>
+    <input type="radio" name="imputed" value="yes" required> Yes
+    <input type="radio" name="imputed" value="no"> No
+  </div>
+
+  <button type="button" onclick="generateCSV()">Download Custom Guidelines</button>
+</form>
+
+<script>
+function generateCSV() {
+  const form = document.getElementById("surveyForm");
+
+  const responses = {
+    data: form.data.value,
+    ethics: form.ethics.value,
+    temporal: form.temporal.value,
+    multiple: form.multiple.value,
+    citation: form.citation.value,
+    nodes: form.nodes.value,
+    missing: form.missing.value,
+    degree: form.degree.value,
+    edges: form.edges.value,
+    direction: form.direction.value,
+    weight: form.weight.value,
+    selfloops: form.selfloops.value,
+    hyper: form.hyper.value,
+    symmetrized: form.symmetrized.value,
+    dichotomized: form.dichotomized.value,
+    projected: form.projected.value,
+    excluded: form.excluded.value,
+    aggregated: form.aggregated.value,
+    imputed: form.imputed.value
+  };
+
+  // Map responses to custom text
+  const output = [
+
+    {
+      Number: "1.1",
+      Item: "Data",
+      Guideline: responses.data === "empirical" ? "Report the method originally used to collect the data." : "Report the data generating model and the values of its parameters."
+    },
+
+...(responses.ethics === "yes" ? [{
+    Number: "1.2",
+    Item: "Ethics",
+    Guideline: "Report whether institutional or ethical approval was obtained, the approving entity, and approval date."
+  }] : []),
+
+...(responses.temporal === "yes" ? [{
+    Number: "1.3",
+    Item: "Multiple",
+    Guideline: "Report the number of waves and the temporal interval(s) between waves."
+  }] : []),
+
+...(responses.multiple === "yes" ? [{
+    Number: "1.3",
+    Item: "Multiple",
+    Guideline: "Report the number of networks included in these data."
+  }] : []),
+
+...(responses.data === "empirical" ? [{
+    Number: "1.4",
+    Item: "Location",
+    Guideline: "Report the location that the data are intended to represent, at a substantively and ethically appropriate level of resolution."
+  }] : []),
+
+...(responses.data === "empirical" ? [{
+    Number: "1.5",
+    Item: "Date",
+    Guideline: "Report the date(s) that the data are intended to represent, at a substantively and ethically appropriate level of resolution."
+  }] : []),
+
+    {
+      Number: "1.6",
+      Item: "Availability",
+      Guideline: "Report the URL or DOI linking to a repository where the data or data-generating code are available, or explain why the data are not available in a repository."
+    },
+
+...(responses.citation === "yes" ? [{
+    Number: "1.7",
+    Item: "Citation",
+    Guideline: "Provide a citation to the data."
+  }] : []),
+
+    {
+      Number: "2.1",
+      Item: "Nodes",
+      Guideline: responses.nodes === "no" ? "Report what the nodes are intended to represent." : "Describe the network as N-mode and report what each type of node is intended to represent."
+    },
+
+...(responses.temporal === "no" && responses.multiple === "no" && responses.nodes === "no" ? [{
+    Number: "2.2",
+    Item: "Size",
+    Guideline: "Report the number of nodes."
+  }] : []),
+
+...(responses.temporal === "yes" ? [{
+    Number: "2.2",
+    Item: "Size",
+    Guideline: "Report the number of nodes in each wave if practical; otherwise report the mean, standard deviation, and range of this value across the waves."
+  }] : []),
+
+...(responses.multiple === "yes" ? [{
+    Number: "2.2",
+    Item: "Size",
+    Guideline: "Report the number of nodes in each network if practical; otherwise report the mean, standard deviation, and range of this value across the networks."
+  }] : []),
+
+...(responses.nodes === "yes" ? [{
+    Number: "2.2",
+    Item: "Size",
+    Guideline: "Report the number of nodes representing each type of entity."
+  }] : []),
+
+...(responses.data === "empirical" ? [{
+    Number: "2.3",
+    Item: "Boundary",
+    Guideline: "Report how the set of nodes that should be included in the network was defined."
+  }] : []),
+
+...(responses.data === "empirical" && responses.missing === "yes" && responses.temporal === "no" && responses.multiple === "no" ? [{
+    Number: "2.4",
+    Item: "Missing",
+    Guideline: "Report the percent or number of missing nodes, or the percent or number of present nodes (i.e., the response rate)."
+  }] : []),
+
+...(responses.data === "empirical" && responses.missing === "yes" && responses.temporal === "yes" ? [{
+    Number: "2.4",
+    Item: "Missing",
+    Guideline: "Report the percent or number of missing nodes, or the percent or number of present nodes (i.e., the response rate), for each wave if practical; otherwise report the mean, standard deviation, and range of this value across the waves."
+  }] : []),
+
+...(responses.data === "empirical" && responses.missing === "yes" && responses.multiple === "yes" ? [{
+    Number: "2.4",
+    Item: "Missing",
+    Guideline: "Report the percent or number of missing nodes, or the percent or number of present nodes (i.e., the response rate), for each network if practical; otherwise report the mean, standard deviation, and range of this value across the networks."
+  }] : []),
+
+...(responses.degree === "yes" ? [{
+    Number: "2.5",
+    Item: "Degree",
+    Guideline: "Report any restriction(s) on nodes' degree."
+  }] : []),
+
+    {
+      Number: "3.1",
+      Item: "Edges",
+      Guideline: responses.edges === "no" ? "Report what the edges are intended to represent." : "Describe the network as multiplex or multilayer, and report what each type of edge is intended to represent."
+    },
+
+...(responses.direction === "undirected" ? [{
+    Number: "3.2",
+    Item: "Direction",
+    Guideline: "Report that the edges are undirected."
+  }] : []),
+
+...(responses.direction === "directed" && responses.edges === "no" ? [{
+    Number: "3.2",
+    Item: "Direction",
+    Guideline: "Report that the edges are directed, and what the direction of the edge means."
+  }] : []),
+
+...(responses.direction === "directed" && responses.edges === "yes" ? [{
+    Number: "3.2",
+    Item: "Direction",
+    Guideline: "Report that the edges are directed, and what the direction of each type of edge means."
+  }] : []),
+
+...(responses.weight === "unweighted" ? [{
+    Number: "3.3",
+    Item: "Weight",
+    Guideline: "Report that the edges are unweighted."
+  }] : []),
+
+...(responses.weight === "weighted" && responses.edges === "no" ? [{
+    Number: "3.3",
+    Item: "Weight",
+    Guideline: "Report the meaning, scale of measurement, mean, standard deviation, and range of the edge weights."
+  }] : []),
+
+...(responses.weight === "signed" && responses.edges === "no" ? [{
+    Number: "3.3",
+    Item: "Weight",
+    Guideline: "Report the meaning of positive edges and the meaning of negative edges."
+  }] : []),
+
+...(responses.weight === "weighted" && responses.edges === "yes" ? [{
+    Number: "3.3",
+    Item: "Weight",
+    Guideline: "For each type of edge, report the meaning, scale of measurement, mean, standard deviation, and range of the edge weights."
+  }] : []),
+
+...(responses.weight === "signed" && responses.edges === "yes" ? [{
+    Number: "3.3",
+    Item: "Weight",
+    Guideline: "For each type of edge, report the meaning of positive edges and the meaning of negative edges."
+  }] : []),
+
+...(responses.selfloops === "yes" ? [{
+    Number: "3.4",
+    Item: "Selfloops",
+    Guideline: "Report that the network contains self-loops and what they represent."
+  }] : []),
+
+...(responses.nodes === "yes" ? [{
+    Number: "3.5",
+    Item: "Bipartite",
+    Guideline: "Report where edges can be located."
+  }] : []),
+
+...(responses.hyper === "yes" ? [{
+    Number: "3.6",
+    Item: "Hypergraph",
+    Guideline: "Report that the network is a hypergraph."
+  }] : []),
+
+...(responses.temporal === "no" && responses.multiple === "no" && responses.edges === "no" && responses.weight === "unweighted" && responses.hyper === "no" ? [{
+    Number: "3.7",
+    Item: "Number",
+    Guideline: "Report the number of edges present."
+  }] : []),
+
+...(responses.temporal === "yes" ? [{
+    Number: "3.7",
+    Item: "Number",
+    Guideline: "Report the number of edges present in each wave if practical; otherwise report the mean, standard deviation, and range of this value across the waves."
+  }] : []),
+
+...(responses.multiple === "yes" ? [{
+    Number: "3.7",
+    Item: "Number",
+    Guideline: "Report the number of edges present in each network if practical; otherwise report the mean, standard deviation, and range of this value across the networks."
+  }] : []),
+
+...(responses.edges === "yes" ? [{
+    Number: "3.7",
+    Item: "Number",
+    Guideline: "Report the number of each type of edges present."
+  }] : []),
+
+...(responses.weight === "signed" ? [{
+    Number: "3.7",
+    Item: "Number",
+    Guideline: "Report the number of positive edges present, and the number of negative edges present."
+  }] : []),
+
+...(responses.hyper === "yes" ? [{
+    Number: "3.7",
+    Item: "Number",
+    Guideline: "Report the number of (hyper)edges present, and the mean and standard deviation of the size of the hyperedges."
+  }] : []),
+
+...(responses.symmetrized === "yes" ? [{
+    Number: "4.1",
+    Item: "Symmetrized",
+    Guideline: "Report the method used to symmetrize edges, and the percent of connected dyads that had non-reciprocal edges before the transformation."
+  }] : []),
+
+...(responses.dichotomized === "yes" ? [{
+    Number: "4.2",
+    Item: "Dichotomized",
+    Guideline: "Report the method used to dichotomize edges, and the percent of edges that were deleted as a result of the transformation."
+  }] : []),
+
+...(responses.projected === "yes" ? [{
+    Number: "4.3",
+    Item: "Projected",
+    Guideline: "Report the method used to generate the network from two-mode or non-network data."
+  }] : []),
+
+...(responses.excluded === "yes" ? [{
+    Number: "4.4",
+    Item: "Excluded",
+    Guideline: "Report the criteria used to exclude nodes or edges, and the number or percent of nodes or edges that were excluded."
+  }] : []),
+
+...(responses.aggregated === "yes" ? [{
+    Number: "4.5",
+    Item: "Aggregated",
+    Guideline: "Report the method used to aggregate nodes or edges."
+  }] : []),
+
+...(responses.imputed === "yes" ? [{
+    Number: "4.6",
+    Item: "Imputed",
+    Guideline: "Report the method used to impute nodes or edges, and the number or percent of nodes or edges that were imputed."
+  }] : []),
+
+
+
+  ];
+
+  // Convert to CSV
+  const headers = ["Number", "Item", "Guideline"];
+  const csvRows = [
+    headers.join(","),
+    ...output.map(row =>
+      headers.map(field => `"${row[field]}"`).join(",")
+    )
+  ];
+
+  const csvContent = csvRows.join("\n");
+
+  // Download CSV
+  const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
+  const url = URL.createObjectURL(blob);
+
+  const link = document.createElement("a");
+  link.setAttribute("href", url);
+  link.setAttribute("download", "GRAND_custom.csv");
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+}
+</script>
+
+</body>
+</html>
