@@ -9,6 +9,8 @@ $\rightarrow$ [Long version with notes](https://raw.githubusercontent.com/zpneal
 
 $\rightarrow$ [Generate custom guidelines](https://zpneal.github.io/grand-site/contents/grand.html)
 
+$\rightarrow$ [Generate custom summary table](https://zpneal.github.io/grand-site/contents/grand_label.html)
+
 $\rightarrow$ [Manuscript](https://raw.githubusercontent.com/zpneal/grand-site/main/contents/grand_manuscript.pdf)
 
-If you would like to join the GRAND consortium and contribute to this project, please complete the brief questionnaire at https://tinyurl.com/help-with-GRAND.
+If you would like to join the GRAND Consortium, endorsing these guidelines and participating in future revisions, please contact <zpneal@msu.edu>.
