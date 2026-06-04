@@ -103,7 +103,7 @@ Use this form to generate a tabular summary of network data following the Guidel
 <label>Network Name</label>
 <input
     id="networkName"
-    placeholder="Zachary Karate Club"
+    placeholder="(e.g., Zachary Karate Club)"
 >
 </div>
 
@@ -135,7 +135,7 @@ Received ethics approval
 <label>Location</label>
 <input
     id="location"
-    placeholder="American university"
+    placeholder="(e.g., American university)"
 >
 </div>
 
@@ -143,7 +143,7 @@ Received ethics approval
 <label>Date</label>
 <input
     id="date"
-    placeholder="1970-1972"
+    placeholder="(e.g., 1970-1972)"
 >
 </div>
 
@@ -151,7 +151,7 @@ Received ethics approval
 <label>Availability</label>
 <input
     id="availability"
-    placeholder="http://konect.cc/networks/ucidata-zachary/"
+    placeholder="(e.g., http://konect.cc/networks/ucidata-zachary/)"
 >
 </div>
 
@@ -159,7 +159,7 @@ Received ethics approval
 <label>Citation</label>
 <input
     id="citation"
-    placeholder="https://doi.org/10.1086/jar.33.4.3629752"
+    placeholder="(e.g., https://doi.org/10.1086/jar.33.4.3629752)"
 >
 </div>
 
@@ -360,12 +360,12 @@ function renderNodeInputs(){
 
         const meaningPH =
             (i === 1)
-            ? "People"
+            ? "(e.g., People)"
             : "";
 
         const numberPH =
             (i === 1)
-            ? "34"
+            ? "(e.g., 34)"
             : "";
 
         block.innerHTML = `
@@ -421,12 +421,12 @@ function renderEdgeInputs(){
 
         const meaningPH =
             (i === 1)
-            ? "Friendship"
+            ? "(e.g., Friendship)"
             : "";
 
         const numberPH =
             (i === 1)
-            ? "78"
+            ? "(e.g., 78)"
             : "";
 
         block.innerHTML = `
