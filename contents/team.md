@@ -15,3 +15,8 @@ David Lazer (Northeastern University) | Andrea Sofia Teixeira (Northeastern Univ
 []() | []()
 :--- | :---
 TBD | &nbsp;
+
+<details>
+  <summary>Click here to expand instructions</summary>
+  <p>Here are the step-by-step details for the process.</p>
+</details>
