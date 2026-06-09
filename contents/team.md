@@ -12,11 +12,19 @@ David Lazer (Northeastern University) | Andrea Sofia Teixeira (Northeastern Univ
 <p>&nbsp;</p>
 
 ## GRAND Consortium
+The GRAND Consortium includes network scholars who have participated in the development of GRAND, and who have endorsed the use of these guidelines in network research. As of **9 June 2026**, the Consortium included **XXX** members.
+
 []() | []()
 :--- | :---
 TBD | &nbsp;
 
 <details>
-  <summary>Click here to expand instructions</summary>
-  <p>Here are the step-by-step details for the process.</p>
+  <summary>Click here for a list of GRAND Consortium Members</summary>
+   <ol>
+    <li>Name One</li>
+    <li>Name Two</li>
+    <li>Name Three</li>
+    <li>Name Four</li>
+    <li>Name Five</li>
+  </ol>
 </details>
