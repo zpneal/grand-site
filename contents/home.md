@@ -1,5 +1,5 @@
 
-The **G**uidelines for **R**eporting **A**bout **N**etwork **D**ata (GRAND) aim to promote transparency and clarity in network research by providing researchers, editors, and peer reviewers with guidance about the *minimum* information that should *always* be provided about a network in research publications. It was developed by a working group of 15 network scholars, in collaboration with the GRAND Consortium, with support from the US National Science Foundation ([Award 2348223](https://www.nsf.gov/awardsearch/showAward?AWD_ID=2348223)).
+The **G**uidelines for **R**eporting **A**bout **N**etwork **D**ata (GRAND) aim to promote transparency and clarity in network research by providing researchers, editors, and peer reviewers with guidance about the *minimum* information that should *always* be provided about a network in research publications. It was developed by a working group of [15 network scholars](https://grand-statement.org/#team), in collaboration with the GRAND Consortium, with support from the US National Science Foundation ([Award 2348223](https://www.nsf.gov/awardsearch/showAward?AWD_ID=2348223)).
 
 **Get the guidelines**
 
