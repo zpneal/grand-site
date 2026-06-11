@@ -2,6 +2,10 @@
 
 The items in GRAND were selected by the GRAND Working Group and Consortium to be relevant in nearly all cases and researchers are encouraged to report all GRAND items. However, GRAND provides guidelines, not requirements.
 
+### What if a recommended piece of information is unknown?
+
+You should report that it is unknown.
+
 ### Some of this information is already provided in another document. Do I need to report it again?
 
 Yes. GRAND ensures that each document reporting on a network contains at least a minimal description of the data. If the data are described in more detail elsewhere, you may cite it and refer readers there for more information.
