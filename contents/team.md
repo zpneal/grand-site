@@ -12,9 +12,7 @@ David Lazer (Northeastern University) | Andrea Sofia Teixeira (Northeastern Univ
 <p>&nbsp;</p>
 
 ## GRAND Consortium
-The GRAND Consortium includes network scholars who have participated in the development of GRAND, and who have endorsed the use of these guidelines in network research. To endorse GRAND and join the consortium, please contact <zpneal@msu.edu>.
-
-As of **9 June 2026**, the Consortium included **112** members:
+The GRAND Consortium includes **118** network scholars who have participated in the development of GRAND, and who have endorsed the use of these guidelines in network research. To endorse GRAND and join the consortium, please contact <zpneal@msu.edu>.
 
 <details>
   <summary>Click here for a list of GRAND Consortium Members</summary>
@@ -88,7 +86,7 @@ As of **9 June 2026**, the Consortium included **112** members:
  <li>Gergő Tóth (Budapest Centre for Economic and Regional Studies)</li>
  <li>Y. Jasmine Wu (The University of Texas at Austin)</li>
  <li>Giuseppe Liotta (University of Perugia)</li>
- <li>Denise Pumain (Panthéon-Sorbonne Université)</li>
+ <li>Denise Pumain (Sorbonne Université)</li>
  <li>Nuria Rodríguez-López (Universidade de Vigo)</li>
  <li>Aleksandar Tomašević (University of Belgrade)</li>
  <li>Alon Bartal (Bar-Ilan University)</li>
@@ -98,7 +96,7 @@ As of **9 June 2026**, the Consortium included **112** members:
  <li>Julián Cárdenas (University of Valencia)</li>
  <li>Paul M. Wagner (Edinburgh Napier University)</li>
  <li>Rohit S Piplani (University of Melbourne)</li>
- <li>Laura M. Koehly (National Institutes of Health)</li>
+ <li>Laura M. Koehly (National Human Genome Research Institute, National Institutes of Health)</li>
  <li>Michael Quayle (University of Limerick)</li>
  <li>John E Prescott (University of Pittsburgh)</li>
  <li>Brennan Klein (Northeastern University)</li>
@@ -131,5 +129,11 @@ As of **9 June 2026**, the Consortium included **112** members:
  <li>Tobias H. Stark (Utrecht University)</li>
  <li>Daniel Holgado (Universidad de Sevilla)</li>
  <li>Kevin Reuning (Miami University of Ohio)</li>
+ <li>Guido Caldarelli (Consiglio Nazionale delle Ricerche)</li>
+ <li>Stefan Breet (Radboud University)</li>
+ <li>Paul Schuler (Autonomous University Barcelona)</li>
+ <li>Amanda Joy Anderson (US Department of Veterans Affairs)</li>
+ <li>Jason Jeffrey Jones (Stony Brook University)</li>
+ <li>Gianluca Manzo (Sorbonne Université)</li>
   </ol>
 </details>
