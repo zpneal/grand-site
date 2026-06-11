@@ -4,7 +4,7 @@ A network is a complex data object, and it can take many different forms. As a r
 ### Development process
 GRAND was developed in a series of steps:
 1. Review of other reporting guidelines and standards (e.g., PRISMA for systematic reviews)
-2. Review of reporting recommendations for networks: [Bagrow & Ahn (2022)](https://doi.org/10.1007/s41109-022-00514-7), [Luke et al., (2023)](https://doi.org/10.1371/journal.pone.0285236), [Alieva et al., (2025)](https://doi.org/10.5565/rev/redes.1122)
+2. Review of reporting recommendations for networks: [Bagrow & Ahn (2022)](https://doi.org/10.1007/s41109-022-00514-7), [Luke et al., (2023)](https://doi.org/10.1371/journal.pone.0285236), [Burger et al., (2023)](https://doi.org/10.1037/met0000471), and [Alieva et al., (2025)](https://doi.org/10.5565/rev/redes.1122)
 3. Scoping survey of network journal editors, network association board members, and network researchers (data available [here](https://osf.io/zjwm7/))
 4. Preliminary draft by working group of 15 network researchers
 5. Feedback sessions and surveys with network journal editors, network association board members, network software developers, and other network researchers
