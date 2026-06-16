@@ -12,7 +12,7 @@ David Lazer (Northeastern University) | Andrea Sofia Teixeira (Northeastern Univ
 <p>&nbsp;</p>
 
 ## GRAND Consortium
-The GRAND Consortium includes **118** network scholars who have participated in the development of GRAND, and who have endorsed the use of these guidelines in network research. To endorse GRAND and join the consortium, please contact <zpneal@msu.edu>.
+The GRAND Consortium includes **124** network scholars who have participated in the development of GRAND, and who have endorsed the use of these guidelines in network research. To endorse GRAND and join the consortium, please contact <zpneal@msu.edu>.
 
 <details>
   <summary>Click here for a list of GRAND Consortium Members</summary>
@@ -135,5 +135,11 @@ The GRAND Consortium includes **118** network scholars who have participated in 
  <li>Amanda Joy Anderson (US Department of Veterans Affairs)</li>
  <li>Jason Jeffrey Jones (Stony Brook University)</li>
  <li>Gianluca Manzo (Sorbonne Université)</li>
+ <li>Muhammad Irfan Yousuf (University of Engineering and Technology Lahore)</li>
+ <li>Rebecca L. Mauldin (The University of Texas at Arlington)</li>
+ <li>Violeta Calleja-Solanas (University of Oxford)</li>
+ <li>Sébastien Plutniak (CNRS)</li>
+ <li>Anita Knappe (Carl von Ossietzky University)</li>
+ <li>Marion Hoffman (Toulouse School of Economics)</li>
   </ol>
 </details>
