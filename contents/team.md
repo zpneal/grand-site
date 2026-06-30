@@ -12,7 +12,7 @@ David Lazer (Northeastern University) | Andrea Sofia Teixeira (Northeastern Univ
 <p>&nbsp;</p>
 
 ## GRAND Consortium
-The GRAND Consortium includes **124** network scholars who have participated in the development of GRAND, and who have endorsed the use of these guidelines in network research. To endorse GRAND and join the consortium, please contact <zpneal@msu.edu>.
+The GRAND Consortium includes **153** network scholars who have participated in the development of GRAND, and who have endorsed the use of these guidelines in network research. To endorse GRAND and join the consortium, please contact <zpneal@msu.edu>.
 
 <details>
   <summary>Click here for a list of GRAND Consortium Members</summary>
@@ -141,5 +141,34 @@ The GRAND Consortium includes **124** network scholars who have participated in 
  <li>Sébastien Plutniak (CNRS)</li>
  <li>Anita Knappe (Carl von Ossietzky University)</li>
  <li>Marion Hoffman (Toulouse School of Economics)</li>
+ <li>Franziska Barbara Keller (University of Bern)</li>
+ <li>Sandra González-Bailón (University of Pennsylvania)</li>
+ <li>Julia Brennecke (University of Oldenburg)</li>
+ <li>Giona Casiraghi (ETH Zürich)</li>
+ <li>Scott Soltis (University of Vermont)</li>
+ <li>Thomas Teekens (University of Groningen)</li>
+ <li>Gilad Ravid (Ben-Gurion University of the Negev)</li>
+ <li>M. Aaron Guest (Arizona State University)</li>
+ <li>Chrisitan Steglich (University of Groningen)</li>
+ <li>Daniel Tischer (University of Sheffield)</li>
+ <li>Philipp Hövel (Saarland University)</li>
+ <li>Chris M. Smith (University of Toronto)</li>
+ <li>José Fernando Mendes (University of Aveiro)</li>
+ <li>Sneha Kachhara (University of Exeter)</li>
+ <li>Beatriz Patraca (Universitat Autònoma de Barcelona)</li>
+ <li>Adriano J. Holanda (University of São Paulo)</li>
+ <li>Matthew S. Weber (Rutgers University)</li>
+ <li>Norbert Marwan (Potsdam Institute for Climate Impact Research)</li>
+ <li>Emmanuel Lazega (Sciences Po)</li>
+ <li>Roger Th.A.J. Leenders (Tilburg University)</li>
+ <li>Gabriel Varela (University of Indiana-Bloomington)</li>
+ <li>Theresa M. Floyd (University of Montana)</li>
+ <li>Petr Matous (The University of Sydney)</li>
+ <li>George A. Barnett (University of California - Davis)</li>
+ <li>Omar Lizardo (UCLA)</li>
+ <li>Lorenzo Zino (Politecnico di Torino)</li>
+ <li>Muhammad Abulaish (South Asian University)</li>
+ <li>Yuval Kalish (WHU - Otto Beisheim School of Management)</li>
+ <li>Petter Holme (Aalto University)</li>
   </ol>
 </details>
