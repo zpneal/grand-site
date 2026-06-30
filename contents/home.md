@@ -13,6 +13,6 @@ $\rightarrow$ [Generate custom summary table](https://zpneal.github.io/grand-sit
 
 $\rightarrow$ [Manuscript](https://raw.githubusercontent.com/zpneal/grand-site/main/contents/grand_manuscript.pdf)
 
-Please cite GRAND as: *Neal, Z. P., Carley, K., Contractor, N., De Domenico, M., Hollway, J., Labianca, G., Landry, N., Lazer, D., Lubbers, M., Neal, J. W., Ortiz, F., Peixoto, T., Pescosolido, B., Prell, C., Teixeira, A. S., and the GRAND Consortium. (2026). Guidelines for Reporting About Network Data. https://www.grand-statement.org.*
+Please cite GRAND as: *Neal, Z. P., Carley, K., Contractor, N., De Domenico, M., Hollway, J., Labianca, G., Landry, N. W., Lazer, D., Lubbers, M., Neal, J. W., Ortiz, F., Peixoto, T., Pescosolido, B., Prell, C., Teixeira, A. S., and the GRAND Consortium. (2026). Guidelines for Reporting About Network Data. https://www.grand-statement.org.*
 
 If you would like to join the GRAND Consortium, endorsing these guidelines and participating in future revisions, please contact <zpneal@msu.edu>.
