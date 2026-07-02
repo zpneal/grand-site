@@ -12,7 +12,7 @@ David Lazer (Northeastern University) | Andrea Sofia Teixeira (Northeastern Univ
 <p>&nbsp;</p>
 
 ## GRAND Consortium
-The GRAND Consortium includes **153** network scholars who have participated in the development of GRAND, and who have endorsed the use of these guidelines in network research. To endorse GRAND and join the consortium, please contact <zpneal@msu.edu>.
+The GRAND Consortium includes **156** network scholars who have participated in the development of GRAND, and who have endorsed the use of these guidelines in network research. To endorse GRAND and join the consortium, please contact <zpneal@msu.edu>.
 
 <details>
   <summary>Click here for a list of GRAND Consortium Members</summary>
@@ -170,5 +170,8 @@ The GRAND Consortium includes **153** network scholars who have participated in 
  <li>Muhammad Abulaish (South Asian University)</li>
  <li>Yuval Kalish (WHU - Otto Beisheim School of Management)</li>
  <li>Petter Holme (Aalto University)</li>
+ <li>Juan Felipe Nuñez-Espinoza (Colegio de Postgraduados-México)</li>
+ <li>Jana Diesner (Technical University of Munich)</li>
+ <li>Aaron Clauset (University of Colorado Boulder)</li>
   </ol>
 </details>
