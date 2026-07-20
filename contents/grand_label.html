@@ -3,956 +3,1182 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Network Facts Label Generator</title>
-
+<title>GRAND Network Facts Label Generator</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
+  :root{
+    --ink-900:#161a15;
+    --ink-800:#20261e;
+    --ink-700:#2b332a;
+    --bone:#f2efe6;
+    --bone-dim:#a9ae9f;
+    --spice:#e2a53c;
+    --spice-dim:#7a6636;
+    --paper:#ffffff;
+    --line:#3c4438;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--ink-900);
+    color:var(--bone);
+    font-family:'IBM Plex Mono', monospace;
+    min-height:100vh;
+  }
 
-body{
-    font-family:Arial,sans-serif;
-    margin:30px;
+  .shell{max-width:1180px;margin:0 auto;padding:0 24px 80px;}
+
+  header.top{
+    padding:56px 0 36px;
+    border-bottom:1px solid var(--line);
+    margin-bottom:40px;
+  }
+  header.top .eyebrow{
+    font-size:12px;
+    letter-spacing:.18em;
+    text-transform:uppercase;
+    color:var(--spice);
+    margin:0 0 14px;
+  }
+  header.top h1{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:clamp(34px,5vw,56px);
+    margin:0 0 14px;
+    letter-spacing:-0.01em;
+  }
+  header.top p{
+    color:var(--bone-dim);
+    max-width:560px;
+    line-height:1.55;
+    font-size:14.5px;
+    margin:0;
+  }
+
+  .layout{
+    display:grid;
+    grid-template-columns:minmax(560px,680px) minmax(340px,400px);
+    gap:32px;
+    align-items:start;
+  }
+  @media (max-width:880px){
+    .layout{grid-template-columns:1fr;}
+  }
+
+  /* ---------- FORM PANEL ---------- */
+  .panel{
+    background:var(--ink-800);
+    border:1px solid var(--line);
+    border-radius:2px;
+  }
+  /* ---------- COLLAPSIBLE SECTIONS ---------- */
+  details.section{
+    border-bottom:1px dashed var(--line);
+  }
+  details.section:last-of-type{border-bottom:0;}
+  details.section summary{
+    list-style:none;
+    cursor:pointer;
+    padding:18px 22px;
+    font-size:11px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--spice);
     display:flex;
-    flex-wrap:wrap;
-    gap:40px;
-    align-items:flex-start;
-}
-
-.form-panel{
-    width:480px;
-    max-height:90vh;
-    overflow-y:auto;
-}
-
-.form-group{
-    margin-bottom:10px;
-}
-
-.section-title{
-    margin-top:18px;
-    font-weight:bold;
-    font-size:16px;
-}
-
-label{
-    display:block;
-    font-weight:bold;
-    margin-bottom:4px;
-}
-
-input,
-textarea,
-select{
-    width:100%;
-    padding:6px;
-    box-sizing:border-box;
-}
-
-textarea{
-    min-height:60px;
-    resize:vertical;
-}
-
-.checkbox-group{
+    align-items:center;
+    justify-content:space-between;
+    user-select:none;
+    transition:color .15s ease;
+  }
+  details.section summary::-webkit-details-marker{display:none;}
+  details.section summary:hover{color:#f0b957;}
+  details.section summary::after{
+    content:'▸';
+    font-size:10px;
+    color:var(--bone-dim);
+    transition:transform .15s ease;
+    margin-left:12px;
+  }
+  details.section[open] summary::after{
+    transform:rotate(90deg);
+  }
+  .section-body{
+    padding:0 22px 20px;
+  }
+  .row{
     display:flex;
     align-items:center;
     gap:10px;
-    font-weight:bold;
     margin-bottom:10px;
-}
+  }
+  .row:last-child{margin-bottom:0;}
+  .row label{
+    flex:1 1 auto;
+    font-size:13px;
+    color:var(--bone);
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+  }
+  .row .leader{
+    flex:1 1 auto;
+    border-bottom:1px dotted var(--bone-dim);
+    height:0;
+    margin:0 4px;
+    min-width:8px;
+  }
+  .row input{
+    flex:0 0 96px;
+    background:var(--ink-900);
+    border:1px solid var(--line);
+    color:var(--bone);
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    padding:7px 9px;
+    border-radius:2px;
+    text-align:right;
+  }
+  .row input[type="text"]{
+    flex:0 0 420px;
+    text-align:left;
+  }
+  .row select{
+    flex:0 0 160px;
+    background:var(--ink-900);
+    border:1px solid var(--line);
+    color:var(--bone);
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    padding:7px 9px;
+    border-radius:2px;
+    text-align:left;
+  }
+  .row select:focus{
+    outline:none;
+    border-color:var(--spice);
+  }
+  .row input:focus{
+    outline:none;
+    border-color:var(--spice);
+  }
+  .row input::placeholder{
+    color:var(--bone-dim);
+    opacity:1;
+  }
+  .unit{
+    flex:0 0 auto;
+    font-size:11px;
+    color:var(--bone-dim);
+    width:30px;
+  }
 
-.checkbox-group input{
-    width:auto;
-    transform:scale(1.2);
-}
-
-button{
-    margin-top:10px;
-    margin-right:5px;
-    padding:10px 16px;
+  /* Unified boxed checkbox control — matches the visual weight of
+     text/select boxes (same border, background, radius, padding) so
+     checkboxes read as part of the same input system. */
+  .checkbox-control{
+    display:flex;
+    align-items:center;
+    gap:9px;
+    background:var(--ink-900);
+    border:1px solid var(--line);
+    border-radius:2px;
+    padding:8px 10px;
     cursor:pointer;
-}
+    transition:border-color .15s ease;
+  }
+  .checkbox-control:hover{border-color:var(--spice-dim);}
+  .checkbox-control:focus-within{border-color:var(--spice);}
+  .checkbox-control input[type="checkbox"]{
+    flex:0 0 auto;
+    width:15px;
+    height:15px;
+    margin:0;
+    accent-color:var(--spice);
+    cursor:pointer;
+  }
+  .checkbox-control label{
+    flex:1 1 auto;
+    font-size:13px;
+    color:var(--bone);
+    white-space:normal;
+    cursor:pointer;
+  }
 
-.type-block{
-    border:1px solid #ddd;
-    padding:10px;
-    margin-bottom:10px;
-}
+  /* Inline variant — sits alongside a label/leader/select on a single row */
+  .checkbox-control.inline-check{
+    flex:0 0 auto;
+    padding:7px 10px;
+  }
+  .checkbox-control.inline-check label{
+    white-space:nowrap;
+  }
 
-canvas{
-    border:1px solid #ccc;
-    background:white;
-}
+  /* Two-column grid for the transformations checklist */
+  .check-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+  }
 
-.canvas-container{
-    overflow:auto;
-}
+  /* ---------- TYPE BOXES (nodes / edges) ---------- */
+  .type-box{
+    border:1px solid var(--line);
+    border-radius:2px;
+    padding:16px 16px 6px;
+    margin-bottom:14px;
+    background:rgba(242,239,230,0.02);
+  }
+  .type-box:last-of-type{margin-bottom:0;}
+  .type-box-label{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    font-size:11px;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    color:var(--spice);
+    margin-bottom:14px;
+  }
+  .remove-type-btn{
+    flex:0 0 auto;
+    background:transparent;
+    border:1px solid var(--line);
+    color:var(--bone-dim);
+    font-family:'IBM Plex Mono', monospace;
+    font-size:10.5px;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    padding:4px 9px;
+    border-radius:2px;
+    cursor:pointer;
+    transition:border-color .15s ease, color .15s ease;
+  }
+  .remove-type-btn:hover{border-color:#d9736c;color:#d9736c;}
+  .add-type-btn{
+    width:100%;
+    padding:11px 12px;
+    margin-top:2px;
+    margin-bottom:4px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11.5px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    border:1px dashed var(--line);
+    border-radius:2px;
+    background:transparent;
+    color:var(--bone-dim);
+    cursor:pointer;
+    transition:border-color .15s ease, color .15s ease;
+  }
+  .add-type-btn:hover{border-color:var(--spice);color:var(--spice);}
 
+  .actions{padding:20px 22px;}
+  .btn{
+    width:100%;
+    padding:14px 16px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.1em;
+    text-transform:uppercase;
+    border-radius:2px;
+    border:1px solid var(--spice);
+    background:transparent;
+    color:var(--spice);
+    cursor:pointer;
+    transition:background .15s ease, color .15s ease;
+  }
+  .btn:hover{background:var(--spice);color:var(--ink-900);}
+  .btn.primary{
+    background:var(--spice);
+    color:var(--ink-900);
+    margin-top:10px;
+  }
+  .btn.primary:hover{background:#f0b957;}
+  .btn:disabled{opacity:.5;cursor:progress;}
+
+  /* ---------- PREVIEW PANEL ---------- */
+  .preview-wrap{
+    position:sticky;
+    top:24px;
+  }
+
+  #labelStage{
+    background:var(--paper);
+    padding:22px 22px 26px;
+  }
+
+  /* ---- The actual FDA-style Nutrition Facts label ---- */
+  .nutrition-label{
+    font-family:Helvetica, Arial, sans-serif;
+    color:#000;
+    width:320px;
+    max-width:100%;
+    margin:0 auto;
+    border:3px solid #000;
+    padding:6px 8px 8px;
+    background:#fff;
+    transition:box-shadow .2s ease;
+  }
+  .nf-title{
+    font-size:32px;
+    font-weight:800;
+    letter-spacing:-0.5px;
+    margin:0 0 2px;
+    line-height:1;
+  }
+  .nf-thick{border-bottom:9px solid #000;margin:6px 0 2px;}
+  .nf-med{border-bottom:5px solid #000;margin:4px 0;}
+  .nf-thin{border-bottom:1px solid #000;margin:3px 0;}
+  .nf-servsize{
+    display:flex;
+    justify-content:space-between;
+    font-weight:800;
+    font-size:16px;
+    padding:2px 0;
+  }
+  .nf-multiple{
+    font-size:10.5px;
+    font-weight:400;
+    color:#000;
+    margin-top:-2px;
+    padding-bottom:2px;
+  }
+  .nf-amtper{font-size:12px;font-weight:700;margin-top:6px;}
+  .nf-cal-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:baseline;
+    padding:2px 0 0;
+  }
+  .nf-cal-label{font-size:22px;font-weight:800;}
+  .nf-cal-value{font-size:34px;font-weight:800;}
+  .nf-network-na{
+    font-size:16px;
+    font-weight:800;
+    padding:6px 0 4px;
+  }
+  .nf-net-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:baseline;
+    font-size:13px;
+    padding:3px 0;
+    border-bottom:1px solid #000;
+  }
+  .nf-net-row.no-border{border-bottom:0;}
+  .nf-net-row .k{font-weight:800;}
+  .nf-net-row .v{
+    font-weight:400;
+    display:flex;
+    align-items:center;
+    justify-content:flex-end;
+    gap:6px;
+    margin-left:10px;
+    min-width:0;
+  }
+  .nf-net-row .v .vtext{
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+  }
+  .nf-net-row .v a{
+    color:#000;
+    text-decoration:underline;
+  }
+  .ethics-badge{
+    display:inline-flex;
+    align-items:center;
+    gap:3px;
+    flex:0 0 auto;
+    font-size:9.5px;
+    font-weight:700;
+    color:#3a3a3a;
+    background:#eeeeee;
+    border:1px solid #3a3a3a;
+    border-radius:9px;
+    padding:1px 6px 1px 5px;
+    white-space:nowrap;
+  }
+  .ethics-badge .check{
+    font-weight:900;
+    font-size:10px;
+    line-height:1;
+  }
+  .nf-nodes-title{
+    font-weight:800;
+    font-size:13px;
+    padding:3px 0 2px;
+  }
+  .nf-node-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:baseline;
+    font-size:13px;
+    font-weight:400;
+    padding:2px 0;
+    margin-left:14px;
+    border-bottom:1px solid #000;
+  }
+  .nf-node-row.no-border{border-bottom:0;}
+  .nf-node-row .n{
+    margin-left:8px;
+    text-align:right;
+    white-space:nowrap;
+  }
+  .nf-node-row .edge-meta{
+    font-style:italic;
+    font-size:11px;
+  }
+  .nf-dv-header{
+    text-align:right;
+    font-size:11px;
+    font-weight:800;
+    padding-bottom:2px;
+  }
+  .nf-row{
+    display:flex;
+    justify-content:space-between;
+    font-size:13px;
+    padding:2px 0;
+    border-bottom:1px solid #000;
+  }
+  .nf-row.indent1{padding-left:14px;}
+  .nf-row.indent2{padding-left:28px;font-size:12.5px;}
+  .nf-row .name b{font-weight:800;}
+  .nf-row .dv{font-weight:800;white-space:nowrap;margin-left:8px;}
+  .nf-vitrow{
+    display:flex;
+    justify-content:space-between;
+    font-size:12.5px;
+    padding:2px 0;
+    border-bottom:1px solid #000;
+  }
+  .nf-vitrow .dv{font-weight:800;}
+  .nf-transform-title{
+    font-size:13px;
+    font-weight:800;
+    padding:3px 0 2px;
+  }
+  .nf-transform-list{
+    font-size:12.5px;
+    font-weight:400;
+    padding-bottom:4px;
+    line-height:1.4;
+  }
+  .nf-foot{
+    font-size:10.3px;
+    line-height:1.35;
+    padding-top:6px;
+  }
+  .flash{animation:flashbg .5s ease;}
+  @keyframes flashbg{
+    0%{background:#fff2cf;}
+    100%{background:transparent;}
+  }
+
+  .download-row{
+    margin-top:20px;
+    display:flex;
+    gap:10px;
+  }
+  .download-row .btn{margin-top:0;flex:1 1 0;width:auto;}
+
+  footer.note{
+    margin-top:16px;
+    font-size:11.5px;
+    color:var(--bone-dim);
+    line-height:1.5;
+  }
 </style>
 </head>
-
 <body>
 
-<div class="form-panel">
+<div class="shell">
+  <header class="top">
+    <p class="eyebrow">"GRAND" Network Facts Label</p>
+    <h1>Summarize your network.</h1>
+    <p>A "Network Facts" label offers a fun way to summarize details of network data for a poster or presentation. However, it may not include all the details recommended by the Guidelines for Reporting About Network Data (GRAND). For more information about GRAND, visit <a href="https://www.grand-statement.org" target="_blank">https://www.grand-statement.org</a>.</p>
+  </header>
 
-<h2>Network Facts Label Generator</h2>
+  <div class="layout">
+    <!-- FORM PANEL -->
+    <div class="panel">
+      <details class="section" open>
+        <summary>Network</summary>
+        <div class="section-body">
+        <div class="row">
+          <label for="networkName">Network name</label>
+          <span class="leader"></span>
+          <input type="text" id="networkName" placeholder="(e.g., Zachary Karate Club)">
+        </div>
+        <div class="row">
+          <label for="dataSource">Data source</label>
+          <span class="leader"></span>
+          <div class="checkbox-control inline-check">
+            <input type="checkbox" id="ethicsApproval">
+            <label for="ethicsApproval">Received ethics approval</label>
+          </div>
+          <select id="dataSource">
+            <option value="">—</option>
+            <option value="Survey">Survey</option>
+            <option value="Observation">Observation</option>
+            <option value="Interview">Interview</option>
+            <option value="Archival">Archival</option>
+            <option value="Generating model">Generating model</option>
+          </select>
+        </div>
+        <div class="row">
+          <label for="location">Location</label>
+          <span class="leader"></span>
+          <input type="text" id="location" placeholder="(e.g., American university)">
+        </div>
+        <div class="row">
+          <label for="time">Time</label>
+          <span class="leader"></span>
+          <input type="text" id="time" placeholder="(e.g., 1970-1972)">
+        </div>
+        <div class="row">
+          <label for="multipleValue">Multiple</label>
+          <span class="leader"></span>
+          <input type="number" id="multipleValue" placeholder="(e.g., 1)" style="text-align:left;">
+          <select id="multipleUnit">
+            <option value="waves">waves</option>
+            <option value="networks">networks</option>
+          </select>
+        </div>
+        <div class="row">
+          <label for="availability">Availability</label>
+          <span class="leader"></span>
+          <input type="text" id="availability" placeholder="(e.g., https://konect.cc/networks/ucinet-zachary/)">
+        </div>
+        <div class="row">
+          <label for="citation">Citation</label>
+          <span class="leader"></span>
+          <input type="text" id="citation" placeholder="(e.g., https://doi.org/10.1086/jar.33.4.3629752)">
+        </div>
+        </div>
+      </details>
 
-A "Network Facts" label offers a fun way to summarize details of network data for a poster or presentation. However, it may not include all the details recommended by the Guidelines for Reporting About Network Data (GRAND). For more information about GRAND, visit <a href="https://www.grand-statement.org">https://www.grand-statement.org</a>.<br><br>
+      <details class="section">
+        <summary>Nodes</summary>
+        <div class="section-body">
 
-<!-- NETWORK NAME -->
+        <div class="node-type-group" data-type="1">
+          <div class="type-box">
+            <div class="type-box-label"><span>Type 1</span></div>
+            <div class="row">
+              <label for="nodeMeaning1">Meaning</label>
+              <span class="leader"></span>
+              <input type="text" id="nodeMeaning1" placeholder="(e.g., People)">
+            </div>
+            <div class="row">
+              <label for="nodeNumber1">Number</label>
+              <span class="leader"></span>
+              <input type="number" id="nodeNumber1" placeholder="(e.g., 34)" style="text-align:left;">
+            </div>
+          </div>
+        </div>
 
-<div class="form-group">
-<label>Network Name</label>
-<input
-    id="networkName"
-    placeholder="(e.g., Zachary Karate Club)"
->
+        <div class="node-type-group" data-type="2" style="display:none;">
+          <div class="type-box">
+            <div class="type-box-label"><span>Type 2</span><button type="button" class="remove-type-btn" data-kind="node" data-type="2">− Remove</button></div>
+            <div class="row">
+              <label for="nodeMeaning2">Meaning</label>
+              <span class="leader"></span>
+              <input type="text" id="nodeMeaning2">
+            </div>
+            <div class="row">
+              <label for="nodeNumber2">Number</label>
+              <span class="leader"></span>
+              <input type="number" id="nodeNumber2" style="text-align:left;">
+            </div>
+          </div>
+        </div>
+
+        <div class="node-type-group" data-type="3" style="display:none;">
+          <div class="type-box">
+            <div class="type-box-label"><span>Type 3</span><button type="button" class="remove-type-btn" data-kind="node" data-type="3">− Remove</button></div>
+            <div class="row">
+              <label for="nodeMeaning3">Meaning</label>
+              <span class="leader"></span>
+              <input type="text" id="nodeMeaning3">
+            </div>
+            <div class="row">
+              <label for="nodeNumber3">Number</label>
+              <span class="leader"></span>
+              <input type="number" id="nodeNumber3" style="text-align:left;">
+            </div>
+          </div>
+        </div>
+
+        <button type="button" class="add-type-btn" id="addNodeTypeBtn">+ Add node type</button>
+        </div>
+      </details>
+
+      <details class="section">
+        <summary>Edges</summary>
+        <div class="section-body">
+
+        <div class="edge-type-group" data-type="1">
+          <div class="type-box">
+            <div class="type-box-label"><span>Type 1</span></div>
+            <div class="row">
+              <label for="edgeMeaning1">Meaning</label>
+              <span class="leader"></span>
+              <input type="text" id="edgeMeaning1" placeholder="(e.g., Friendship)">
+            </div>
+            <div class="row">
+              <label for="edgeNumber1">Number</label>
+              <span class="leader"></span>
+              <input type="number" id="edgeNumber1" placeholder="(e.g., 78)" style="text-align:left;">
+            </div>
+            <div class="row">
+              <label for="edgeDirection1">Direction</label>
+              <span class="leader"></span>
+              <select id="edgeDirection1">
+                <option value="">—</option>
+                <option value="Undirected">Undirected</option>
+                <option value="Directed">Directed</option>
+              </select>
+            </div>
+            <div class="row">
+              <label for="edgeWeighting1">Weighting</label>
+              <span class="leader"></span>
+              <select id="edgeWeighting1">
+                <option value="">—</option>
+                <option value="Unweighted">Unweighted</option>
+                <option value="Weighted">Weighted</option>
+                <option value="Signed">Signed</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="edge-type-group" data-type="2" style="display:none;">
+          <div class="type-box">
+            <div class="type-box-label"><span>Type 2</span><button type="button" class="remove-type-btn" data-kind="edge" data-type="2">− Remove</button></div>
+            <div class="row">
+              <label for="edgeMeaning2">Meaning</label>
+              <span class="leader"></span>
+              <input type="text" id="edgeMeaning2">
+            </div>
+            <div class="row">
+              <label for="edgeNumber2">Number</label>
+              <span class="leader"></span>
+              <input type="number" id="edgeNumber2" style="text-align:left;">
+            </div>
+            <div class="row">
+              <label for="edgeDirection2">Direction</label>
+              <span class="leader"></span>
+              <select id="edgeDirection2">
+                <option value="">—</option>
+                <option value="Undirected">Undirected</option>
+                <option value="Directed">Directed</option>
+              </select>
+            </div>
+            <div class="row">
+              <label for="edgeWeighting2">Weighting</label>
+              <span class="leader"></span>
+              <select id="edgeWeighting2">
+                <option value="">—</option>
+                <option value="Unweighted">Unweighted</option>
+                <option value="Weighted">Weighted</option>
+                <option value="Signed">Signed</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="edge-type-group" data-type="3" style="display:none;">
+          <div class="type-box">
+            <div class="type-box-label"><span>Type 3</span><button type="button" class="remove-type-btn" data-kind="edge" data-type="3">− Remove</button></div>
+            <div class="row">
+              <label for="edgeMeaning3">Meaning</label>
+              <span class="leader"></span>
+              <input type="text" id="edgeMeaning3">
+            </div>
+            <div class="row">
+              <label for="edgeNumber3">Number</label>
+              <span class="leader"></span>
+              <input type="number" id="edgeNumber3" style="text-align:left;">
+            </div>
+            <div class="row">
+              <label for="edgeDirection3">Direction</label>
+              <span class="leader"></span>
+              <select id="edgeDirection3">
+                <option value="">—</option>
+                <option value="Undirected">Undirected</option>
+                <option value="Directed">Directed</option>
+              </select>
+            </div>
+            <div class="row">
+              <label for="edgeWeighting3">Weighting</label>
+              <span class="leader"></span>
+              <select id="edgeWeighting3">
+                <option value="">—</option>
+                <option value="Unweighted">Unweighted</option>
+                <option value="Weighted">Weighted</option>
+                <option value="Signed">Signed</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <button type="button" class="add-type-btn" id="addEdgeTypeBtn">+ Add edge type</button>
+        </div>
+      </details>
+
+      <details class="section">
+        <summary>Transformations</summary>
+        <div class="section-body">
+        <div class="check-grid">
+          <div class="checkbox-control">
+            <input type="checkbox" id="t-symmetrized">
+            <label for="t-symmetrized">Symmetrized</label>
+          </div>
+          <div class="checkbox-control">
+            <input type="checkbox" id="t-dichotomized">
+            <label for="t-dichotomized">Dichotomized</label>
+          </div>
+          <div class="checkbox-control">
+            <input type="checkbox" id="t-projected">
+            <label for="t-projected">Projected</label>
+          </div>
+          <div class="checkbox-control">
+            <input type="checkbox" id="t-excluded">
+            <label for="t-excluded">Excluded</label>
+          </div>
+          <div class="checkbox-control">
+            <input type="checkbox" id="t-aggregated">
+            <label for="t-aggregated">Aggregated</label>
+          </div>
+          <div class="checkbox-control">
+            <input type="checkbox" id="t-imputed">
+            <label for="t-imputed">Imputed</label>
+          </div>
+        </div>
+        </div>
+      </details>
+
+      <div class="actions">
+        <button class="btn" id="resetBtn" type="button">Reset to blank</button>
+      </div>
+    </div>
+
+    <!-- PREVIEW PANEL -->
+    <div class="preview-wrap">
+      <div id="labelStage">
+        <div class="nutrition-label" id="nutritionLabel">
+          <!-- filled by JS -->
+        </div>
+      </div>
+      <div class="download-row">
+        <button class="btn primary" id="downloadBtn" type="button">Download PDF</button>
+        <button class="btn" id="shareBtn" type="button">Copy share link</button>
+      </div>
+    </div>
+  </div>
 </div>
 
-<!-- DATA SECTION -->
-
-<h3><u>Data</u></h3>
-
-<div class="form-group">
-<label>Data Source</label>
-
-<select id="dataType">
-    <option value="">Select...</option>
-    <option value="survey">Survey</option>
-    <option value="observation" selected>Observation</option>
-    <option value="interview">Interview</option>
-    <option value="archival">Archival</option>
-    <option value="generating model">Generating model</option>
-</select>
-</div>
-
-<div class="checkbox-group">
-<input type="checkbox" id="ethics">
-<label for="ethics">
-Received ethics approval
-</label>
-</div>
-
-<div class="form-group">
-<label>Location</label>
-<input
-    id="location"
-    placeholder="(e.g., American university)"
->
-</div>
-
-<div class="form-group">
-<label>Date</label>
-<input
-    id="date"
-    placeholder="(e.g., 1970-1972)"
->
-</div>
-
-<div class="form-group">
-<label>Availability</label>
-<input
-    id="availability"
-    placeholder="(e.g., http://konect.cc/networks/ucidata-zachary/)"
->
-</div>
-
-<div class="form-group">
-<label>Citation</label>
-<input
-    id="citation"
-    placeholder="(e.g., https://doi.org/10.1086/jar.33.4.3629752)"
->
-</div>
-
-<!-- NODES SECTION -->
-
-<h3><u>Nodes</u></h3>
-
-<div class="form-group">
-<label>Number of node types</label>
-
-<select
-    id="nodeTypeCount"
-    onchange="renderNodeInputs()"
->
-    <option value="1">1</option>
-    <option value="2">2</option>
-    <option value="3">3</option>
-</select>
-</div>
-
-<div id="nodeContainer"></div>
-
-<!-- EDGES SECTION -->
-
-<h3><u>Edges</u></h3>
-
-<div class="form-group">
-<label>Number of edge types</label>
-
-<select
-    id="edgeTypeCount"
-    onchange="renderEdgeInputs()"
->
-    <option value="1">1</option>
-    <option value="2">2</option>
-    <option value="3">3</option>
-</select>
-</div>
-
-<div id="edgeContainer"></div>
-
-<!-- TRANSFORMATIONS -->
-
-<h3><u>Transformations</u></h3>
-
-<div class="checkbox-group">
-    <input type="checkbox" id="symmetrized">
-    <label for="symmetrized">Symmetrized</label>
-</div>
-
-<div class="checkbox-group">
-    <input type="checkbox" id="dichotomized">
-    <label for="dichotomized">Dichotomized</label>
-</div>
-
-<div class="checkbox-group">
-    <input type="checkbox" id="projected">
-    <label for="projected">Projected</label>
-</div>
-
-<div class="checkbox-group">
-    <input type="checkbox" id="excluded">
-    <label for="excluded">Excluded</label>
-</div>
-
-<div class="checkbox-group">
-    <input type="checkbox" id="aggregated">
-    <label for="aggregated">Aggregated</label>
-</div>
-
-<div class="checkbox-group">
-    <input type="checkbox" id="imputed">
-    <label for="imputed">Imputed</label>
-</div>
-
-<button onclick="generateLabel()">
-Generate Label
-</button>
-
-<button onclick="downloadLabel()">
-Download PNG
-</button>
-
-</div>
-
-<div class="canvas-container">
-<canvas id="labelCanvas"></canvas>
-</div>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script>
-
-const canvas =
-    document.getElementById("labelCanvas");
-
-const ctx =
-    canvas.getContext("2d");
-
-/* ---------------- HELPERS ---------------- */
-
-function getValue(id){
-
-    const el =
-        document.getElementById(id);
-
-    if(!el) return "";
-
-    return el.value.trim();
-}
-
-function getChecked(id){
-
-    const el =
-        document.getElementById(id);
-
-    return el
-        ? el.checked
-        : false;
-}
-
-function drawLine(y,width=1){
-
-    ctx.lineWidth = width;
-
-    ctx.beginPath();
-
-    ctx.moveTo(15,y);
-
-    ctx.lineTo(
-        canvas.width - 15,
-        y
-    );
-
-    ctx.stroke();
-}
-
-function capitalize(str){
-
-    if(!str) return "";
-
-    return (
-        str.charAt(0).toUpperCase()
-        + str.slice(1)
-    );
-}
-
-/* ---------------- META LINE ---------------- */
-
-function buildMetaLine(){
-
-    const parts = [];
-
-    const type =
-        capitalize(
-            document.getElementById("dataType").value
-        );
-
-    const location =
-        getValue("location");
-
-    const date =
-        getValue("date");
-
-    const ethics =
-        getChecked("ethics");
-
-    if(type) parts.push(type);
-    if(location) parts.push(location);
-    if(date) parts.push(date);
-
-    if(ethics){
-        parts.push("Ethics approved");
-    }
-
-    return parts.join(" • ");
-}
-
-/* ---------------- NODE INPUTS ---------------- */
-
-function renderNodeInputs(){
-
-    const count =
-        parseInt(
-            document.getElementById("nodeTypeCount").value
-        );
-
-    const container =
-        document.getElementById("nodeContainer");
-
-    container.innerHTML = "";
-
-    for(let i=1;i<=count;i++){
-
-        const block =
-            document.createElement("div");
-
-        block.className =
-            "type-block";
-
-        const meaningPH =
-            (i === 1)
-            ? "(e.g., People)"
-            : "";
-
-        const numberPH =
-            (i === 1)
-            ? "(e.g., 34)"
-            : "";
-
-        block.innerHTML = `
-            <div class="form-group">
-                <label>
-                    Meaning (Type ${i})
-                </label>
-
-                <input
-                    id="nodeMeaning${i}"
-                    placeholder="${meaningPH}"
-                >
-            </div>
-
-            <div class="form-group">
-                <label>
-                    Number (Type ${i})
-                </label>
-
-                <input
-                    id="nodeNumber${i}"
-                    type="text"
-                    placeholder="${numberPH}"
-                >
-            </div>
-        `;
-
-        container.appendChild(block);
-    }
-}
-
-/* ---------------- EDGE INPUTS ---------------- */
-
-function renderEdgeInputs(){
-
-    const count =
-        parseInt(
-            document.getElementById("edgeTypeCount").value
-        );
-
-    const container =
-        document.getElementById("edgeContainer");
-
-    container.innerHTML = "";
-
-    for(let i=1;i<=count;i++){
-
-        const block =
-            document.createElement("div");
-
-        block.className =
-            "type-block";
-
-        const meaningPH =
-            (i === 1)
-            ? "(e.g., Friendship)"
-            : "";
-
-        const numberPH =
-            (i === 1)
-            ? "(e.g., 78)"
-            : "";
-
-        block.innerHTML = `
-
-            <div class="form-group">
-                <label>
-                    Meaning (Type ${i})
-                </label>
-
-                <input
-                    id="edgeMeaning${i}"
-                    placeholder="${meaningPH}"
-                >
-            </div>
-
-            <div class="form-group">
-                <label>
-                    Number (Type ${i})
-                </label>
-
-                <input
-                    id="edgeNumber${i}"
-                    type="text"
-                    placeholder="${numberPH}"
-                >
-            </div>
-
-            <div class="form-group">
-                <label>
-                    Direction
-                </label>
-
-                <select id="edgeDirection${i}">
-                    <option value="Undirected">
-                        Undirected
-                    </option>
-
-                    <option value="Directed">
-                        Directed
-                    </option>
-                </select>
-            </div>
-
-            <div class="form-group">
-                <label>
-                    Weighting
-                </label>
-
-                <select id="edgeWeight${i}">
-                    <option value="Unweighted">
-                        Unweighted
-                    </option>
-
-                    <option value="Weighted">
-                        Weighted
-                    </option>
-
-                    <option value="Signed">
-                        Signed
-                    </option>
-                </select>
-            </div>
-
-        `;
-
-        container.appendChild(block);
-    }
-}
-
-/* ---------------- NODE DATA ---------------- */
-
-function getNodes(){
-
-    const count =
-        parseInt(
-            document.getElementById("nodeTypeCount").value
-        );
-
-    const nodes = [];
-
-    for(let i=1;i<=count;i++){
-
-        nodes.push({
-            meaning:
-                getValue("nodeMeaning"+i),
-
-            number:
-                getValue("nodeNumber"+i)
-        });
-    }
-
-    return nodes;
-}
-
-/* ---------------- EDGE DATA ---------------- */
-
-function getEdges(){
-
-    const count =
-        parseInt(
-            document.getElementById("edgeTypeCount").value
-        );
-
-    const edges = [];
-
-    for(let i=1;i<=count;i++){
-
-        edges.push({
-            meaning:
-                getValue("edgeMeaning"+i),
-
-            number:
-                getValue("edgeNumber"+i),
-
-            direction:
-                getValue("edgeDirection"+i),
-
-            weighting:
-                getValue("edgeWeight"+i)
-        });
-    }
-
-    return edges;
-}
-
-/* ---------------- WIDTH ---------------- */
-
-function calculateWidth(){
-
-    return 500;
-}
-
-/* ---------------- LAYOUT ---------------- */
-
-function layout(mode){
-
-    const metaLine =
-        buildMetaLine();
-
-    const availability =
-        getValue("availability");
-
-    const citation =
-        getValue("citation");
-
-    const transformations = [];
-
-    if(getChecked("symmetrized"))
-        transformations.push("Symmetrized");
-
-    if(getChecked("dichotomized"))
-        transformations.push("Dichotomized");
-
-    if(getChecked("projected"))
-        transformations.push("Projected");
-
-    if(getChecked("excluded"))
-        transformations.push("Excluded");
-
-    if(getChecked("aggregated"))
-        transformations.push("Aggregated");
-
-    if(getChecked("imputed"))
-        transformations.push("Imputed");
-
-    const nodes =
-        getNodes();
-
-    const edges =
-        getEdges();
-
-    let y = 80;
-
-    y += 60;
-
-    if(getValue("networkName"))
-        y += 25;
-
-    if(metaLine)
-        y += 25;
-
-    if(availability)
-        y += 25;
-
-    if(citation)
-        y += 25;
-
-    y += nodes.length * 20;
-
-    y += 22;
-
-    y += edges.length * 20;
-
-    y += 35;
-
-    if(mode === "measure")
-        return y;
-
-    canvas.width =
-        calculateWidth();
-
-    canvas.height =
-        y;
-
-    ctx.fillStyle = "white";
-
-    ctx.fillRect(
-        0,
-        0,
-        canvas.width,
-        canvas.height
-    );
-
-    ctx.strokeStyle = "black";
-    ctx.fillStyle = "black";
-
-    ctx.lineWidth = 5;
-
-    ctx.strokeRect(
-        5,
-        5,
-        canvas.width - 10,
-        canvas.height - 10
-    );
-
-    let cursorY = 50;
-
-    /* TITLE */
-
-    ctx.font =
-        "bold 46px Arial";
-
-    ctx.fillText(
-        "Network Facts",
-        18,
-        cursorY
-    );
-
-    cursorY += 30;
-
-    /* NETWORK NAME */
-
-    const name =
-        getValue("networkName");
-
-    if(name){
-
-        ctx.font =
-            "bold 20px Arial";
-
-        ctx.fillText(
-            name,
-            18,
-            cursorY
-        );
-
-        cursorY += 20;
-    }
-
-    drawLine(cursorY,10);
-
-    cursorY += 18;
-
-    /* META LINE */
-
-    if(metaLine){
-
-        ctx.font =
-            "15px Arial";
-
-        ctx.textAlign =
-            "left";
-
-        ctx.fillText(
-            metaLine,
-            18,
-            cursorY
-        );
-
-        cursorY += 8;
-
-        drawLine(cursorY,1);
-
-        cursorY += 16;
-    }
-
-    /* AVAILABILITY */
-
-    if(availability){
-
-        ctx.font =
-            "15px Arial";
-
-        ctx.fillText(
-            "Available at " + availability,
-            18,
-            cursorY
-        );
-
-        cursorY += 8;
-
-        drawLine(cursorY,1);
-
-        cursorY += 16;
-    }
-
-    /* CITATION */
-
-    if(citation){
-
-        ctx.font =
-            "15px Arial";
-
-        ctx.fillText(
-            "More information in " + citation,
-            18,
-            cursorY
-        );
-
-        cursorY += 8;
-
-        drawLine(cursorY,1);
-
-        cursorY += 16;
-    }
-
-    /* NODES */
-
-    const leftX = 18;
-    const midX = 82;
-    const rightX =
-        canvas.width - 18;
-
-    ctx.font =
-        "bold 15px Arial";
-
-    ctx.textAlign =
-        "left";
-
-    ctx.fillText(
-        "Nodes",
-        leftX,
-        cursorY
-    );
-
-    nodes.forEach((node,i)=>{
-
-        const rowY =
-            cursorY + (i * 20);
-
-        ctx.font =
-            "15px Arial";
-
-        ctx.textAlign =
-            "left";
-2
-        ctx.fillText(
-            node.meaning || "",
-            midX,
-            rowY
-        );
-
-        ctx.textAlign =
-            "right";
-
-        ctx.fillText(
-            node.number || "",
-            rightX,
-            rowY
-        );
+  const FOOTER_LABEL = 'Guidelines for Reporting About Network Data';
+  const FOOTER_URL = 'https://www.grand-statement.org';
+
+  const ids = ['networkName'];
+
+  const networkFieldIds = ['dataSource','ethicsApproval','location','time','multipleValue','multipleUnit','availability','citation'];
+
+  const transformOptions = [
+    { id:'t-symmetrized', label:'Symmetrized' },
+    { id:'t-dichotomized', label:'Dichotomized' },
+    { id:'t-projected', label:'Projected' },
+    { id:'t-excluded', label:'Excluded' },
+    { id:'t-aggregated', label:'Aggregated' },
+    { id:'t-imputed', label:'Imputed' }
+  ];
+
+  const inputs = {};
+  ids.forEach(id => inputs[id] = document.getElementById(id));
+  const transformInputs = {};
+  transformOptions.forEach(t => transformInputs[t.id] = document.getElementById(t.id));
+  const networkInputs = {};
+  networkFieldIds.forEach(id => networkInputs[id] = document.getElementById(id));
+
+  function esc(str){
+    const div = document.createElement('div');
+    div.textContent = str;
+    return div.innerHTML;
+  }
+  function safeHref(url){
+    // Prepend https:// if the user typed a bare domain, so the link is clickable.
+    const trimmed = url.trim();
+    if(/^https?:\/\//i.test(trimmed)) return trimmed;
+    return 'https://' + trimmed;
+  }
+
+  function render(){
+    const s = {
+      networkName: inputs.networkName.value || '',
+    };
+
+    const multipleNum = parseFloat(networkInputs.multipleValue.value);
+    const multipleValid = !isNaN(multipleNum) && multipleNum > 1;
+    const multipleUnitText = networkInputs.multipleUnit.value || 'waves';
+
+    const networkFieldDefs = [
+      { label:'Source', value: networkInputs.dataSource.value, link:false },
+      { label:'Location', value: networkInputs.location.value, link:false },
+      { label:'Time', value: networkInputs.time.value, link:false },
+      { label:'Available at', value: networkInputs.availability.value, link:true },
+      { label:'Details in', value: networkInputs.citation.value, link:true }
+    ];
+
+    const ethicsApproved = networkInputs.ethicsApproval.checked;
+
+    const networkRows = networkFieldDefs.filter(f => f.value && f.value.trim() !== '');
+    const networkRowsHtml = networkRows
+      .map((f, i) => {
+        const raw = f.value.trim();
+        const valueHtml = f.link
+          ? `<a href="${esc(safeHref(raw))}" target="_blank" rel="noopener">${esc(raw)}</a>`
+          : esc(raw);
+        const badgeHtml = (f.label === 'Source' && ethicsApproved)
+          ? `<span class="ethics-badge"><span class="check">&check;</span>Ethics Approved</span>`
+          : '';
+        const isLast = i === networkRows.length - 1;
+        return `<div class="nf-net-row${isLast ? ' no-border' : ''}"><span class="k">${esc(f.label)}</span><span class="v"><span class="vtext">${valueHtml}</span>${badgeHtml}</span></div>`;
+      })
+      .join('');
+
+    const checkedTransforms = transformOptions
+      .filter(t => transformInputs[t.id].checked)
+      .map(t => t.label);
+    const transformsText = checkedTransforms.length ? checkedTransforms.join(' &bull; ') : 'None';
+
+    const selectedNodeTypeCount = nodeTypeCount;
+    const nodeTypeDefs = [
+      { type:1, meaning: document.getElementById('nodeMeaning1').value.trim(), number: document.getElementById('nodeNumber1').value.trim(), always:true },
+      { type:2, meaning: document.getElementById('nodeMeaning2').value.trim(), number: document.getElementById('nodeNumber2').value.trim(), always:false },
+      { type:3, meaning: document.getElementById('nodeMeaning3').value.trim(), number: document.getElementById('nodeNumber3').value.trim(), always:false }
+    ];
+    const nodeRows = nodeTypeDefs.filter(t => t.type <= selectedNodeTypeCount && (t.always || t.meaning !== '' || t.number !== ''));
+    const nodeRowsHtml = nodeRows
+      .map((t, i) => {
+        const isLast = i === nodeRows.length - 1;
+        return `<div class="nf-node-row${isLast ? ' no-border' : ''}"><span class="m">${esc(t.meaning)}</span><span class="n">${esc(t.number)}</span></div>`;
+      })
+      .join('');
+
+    const selectedEdgeTypeCount = edgeTypeCount;
+    const edgeTypeDefs = [
+      { type:1, meaning: document.getElementById('edgeMeaning1').value.trim(), number: document.getElementById('edgeNumber1').value.trim(), direction: document.getElementById('edgeDirection1').value.trim(), weighting: document.getElementById('edgeWeighting1').value.trim(), always:true },
+      { type:2, meaning: document.getElementById('edgeMeaning2').value.trim(), number: document.getElementById('edgeNumber2').value.trim(), direction: document.getElementById('edgeDirection2').value.trim(), weighting: document.getElementById('edgeWeighting2').value.trim(), always:false },
+      { type:3, meaning: document.getElementById('edgeMeaning3').value.trim(), number: document.getElementById('edgeNumber3').value.trim(), direction: document.getElementById('edgeDirection3').value.trim(), weighting: document.getElementById('edgeWeighting3').value.trim(), always:false }
+    ];
+    const edgeRows = edgeTypeDefs.filter(t => t.type <= selectedEdgeTypeCount && (t.always || t.meaning !== '' || t.number !== '' || t.direction !== '' || t.weighting !== ''));
+    const edgeRowsHtml = edgeRows
+      .map((t, i) => {
+        const isLast = i === edgeRows.length - 1;
+        const metaParts = [];
+        if(t.direction !== '') metaParts.push(t.direction);
+        if(t.weighting !== '') metaParts.push(t.weighting);
+        const metaHtml = metaParts.length
+          ? ` <span class="edge-meta">(${esc(metaParts.join(', '))})</span>`
+          : '';
+        return `<div class="nf-node-row${isLast ? ' no-border' : ''}"><span class="m">${esc(t.meaning)}${metaHtml}</span><span class="n">${esc(t.number)}</span></div>`;
+      })
+      .join('');
+
+    const html = `
+      <div class="nf-title">Network Facts</div>
+      <div class="nf-servsize"><span>${esc(s.networkName)}</span></div>
+      ${multipleValid ? `<div class="nf-multiple">${esc(String(multipleNum))} ${esc(multipleUnitText)}</div>` : ''}
+      <div class="nf-thick"></div>
+
+      ${networkRowsHtml}
+      <div class="nf-thick"></div>
+
+      <div class="nf-nodes-title">Nodes</div>
+      ${nodeRowsHtml}
+      <div class="nf-thin"></div>
+
+      <div class="nf-nodes-title">Edges</div>
+      ${edgeRowsHtml}
+      <div class="nf-thick"></div>
+
+      <div class="nf-transform-title">Transformations</div>
+      <div class="nf-transform-list" style="border-bottom:9px solid #000; padding-bottom:5px;">${transformsText}</div>
+
+      <div class="nf-foot" id="nfFoot">${FOOTER_LABEL} (<a href="${FOOTER_URL}" target="_blank" rel="noopener" id="footerLink" style="color:#000;">${FOOTER_URL}</a>)</div>
+    `;
+
+    const label = document.getElementById('nutritionLabel');
+    label.innerHTML = html;
+    label.classList.remove('flash');
+    void label.offsetWidth;
+    label.classList.add('flash');
+  }
+
+  ids.forEach(id => inputs[id].addEventListener('input', render));
+  transformOptions.forEach(t => transformInputs[t.id].addEventListener('change', render));
+  networkFieldIds.forEach(id => {
+    const evt = (networkInputs[id].type === 'checkbox' || networkInputs[id].tagName === 'SELECT') ? 'change' : 'input';
+    networkInputs[id].addEventListener(evt, render);
+  });
+
+  const MAX_TYPES = 3;
+  let nodeTypeCount = 1;
+  let edgeTypeCount = 1;
+
+  const nodeTypeGroups = Array.from(document.querySelectorAll('.node-type-group'));
+  const nodeFieldIds = ['nodeMeaning1','nodeNumber1','nodeMeaning2','nodeNumber2','nodeMeaning3','nodeNumber3'];
+  const addNodeTypeBtn = document.getElementById('addNodeTypeBtn');
+
+  function clearNodeType(t){
+    document.getElementById('nodeMeaning'+t).value = '';
+    document.getElementById('nodeNumber'+t).value = '';
+  }
+
+  function updateNodeTypeVisibility(){
+    nodeTypeGroups.forEach(g => {
+      const t = parseInt(g.dataset.type, 10);
+      g.style.display = t <= nodeTypeCount ? '' : 'none';
+      const removeBtn = g.querySelector('.remove-type-btn');
+      if(removeBtn) removeBtn.style.display = (t === nodeTypeCount && nodeTypeCount > 1) ? '' : 'none';
     });
-
-    cursorY +=
-        nodes.length * 20;
-
-    drawLine(cursorY,1);
-
-    cursorY += 20;
-
-    /* EDGES */
-
-    ctx.font =
-        "bold 15px Arial";
-
-    ctx.textAlign =
-        "left";
-
-    ctx.fillText(
-        "Edges",
-        leftX,
-        cursorY
-    );
-
-    edges.forEach((edge,i)=>{
-
-        const rowY =
-            cursorY + (i * 20);
-
-        ctx.font =
-            "15px Arial";
-
-        ctx.textAlign =
-            "left";
-
-        const meaning =
-            edge.meaning || "";
-
-        ctx.fillText(
-            meaning,
-            midX,
-            rowY
-        );
-
-        const meaningWidth =
-            ctx.measureText(meaning).width;
-
-        if(edge.meaning && edge.number){
-
-            const detailText =
-                ` (${edge.direction}, ${edge.weighting})`;
-
-            ctx.font =
-                "italic 13px Arial";
-
-            ctx.fillText(
-                detailText,
-                midX + meaningWidth + 5,
-                rowY
-            );
-        }
-
-        ctx.font =
-            "15px Arial";
-
-        ctx.textAlign =
-            "right";
-
-        ctx.fillText(
-            edge.number || "",
-            rightX,
-            rowY
-        );
+    addNodeTypeBtn.style.display = nodeTypeCount < MAX_TYPES ? '' : 'none';
+  }
+  addNodeTypeBtn.addEventListener('click', () => {
+    if(nodeTypeCount < MAX_TYPES){
+      nodeTypeCount++;
+      updateNodeTypeVisibility();
+      render();
+    }
+  });
+  document.querySelectorAll('.remove-type-btn[data-kind="node"]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const t = parseInt(btn.dataset.type, 10);
+      clearNodeType(t);
+      nodeTypeCount = t - 1;
+      updateNodeTypeVisibility();
+      render();
     });
+  });
+  nodeFieldIds.forEach(id => {
+    document.getElementById(id).addEventListener('input', render);
+  });
+  updateNodeTypeVisibility();
 
-    cursorY +=
-        edges.length * 20;
+  const edgeTypeGroups = Array.from(document.querySelectorAll('.edge-type-group'));
+  const edgeFieldIds = [
+    'edgeMeaning1','edgeNumber1','edgeDirection1','edgeWeighting1',
+    'edgeMeaning2','edgeNumber2','edgeDirection2','edgeWeighting2',
+    'edgeMeaning3','edgeNumber3','edgeDirection3','edgeWeighting3'
+  ];
+  const addEdgeTypeBtn = document.getElementById('addEdgeTypeBtn');
 
-    drawLine(cursorY,1);
+  function clearEdgeType(t){
+    document.getElementById('edgeMeaning'+t).value = '';
+    document.getElementById('edgeNumber'+t).value = '';
+    document.getElementById('edgeDirection'+t).value = '';
+    document.getElementById('edgeWeighting'+t).value = '';
+  }
 
-    cursorY += 18;
+  function updateEdgeTypeVisibility(){
+    edgeTypeGroups.forEach(g => {
+      const t = parseInt(g.dataset.type, 10);
+      g.style.display = t <= edgeTypeCount ? '' : 'none';
+      const removeBtn = g.querySelector('.remove-type-btn');
+      if(removeBtn) removeBtn.style.display = (t === edgeTypeCount && edgeTypeCount > 1) ? '' : 'none';
+    });
+    addEdgeTypeBtn.style.display = edgeTypeCount < MAX_TYPES ? '' : 'none';
+  }
+  addEdgeTypeBtn.addEventListener('click', () => {
+    if(edgeTypeCount < MAX_TYPES){
+      edgeTypeCount++;
+      updateEdgeTypeVisibility();
+      render();
+    }
+  });
+  document.querySelectorAll('.remove-type-btn[data-kind="edge"]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const t = parseInt(btn.dataset.type, 10);
+      clearEdgeType(t);
+      edgeTypeCount = t - 1;
+      updateEdgeTypeVisibility();
+      render();
+    });
+  });
+  edgeFieldIds.forEach(id => {
+    const el = document.getElementById(id);
+    const evt = el.tagName === 'SELECT' ? 'change' : 'input';
+    el.addEventListener(evt, render);
+  });
+  updateEdgeTypeVisibility();
 
-    /* TRANSFORMATIONS */
+  // ---------- SHARE LINK: encode/decode all form state in the URL ----------
+  function collectState(){
+    const state = {};
+    ids.forEach(id => { state[id] = inputs[id].value; });
+    networkFieldIds.forEach(id => {
+      const el = networkInputs[id];
+      state[id] = el.type === 'checkbox' ? el.checked : el.value;
+    });
+    transformOptions.forEach(t => { state[t.id] = transformInputs[t.id].checked; });
+    state.nodeTypeCount = nodeTypeCount;
+    nodeFieldIds.forEach(id => { state[id] = document.getElementById(id).value; });
+    state.edgeTypeCount = edgeTypeCount;
+    edgeFieldIds.forEach(id => { state[id] = document.getElementById(id).value; });
+    return state;
+  }
 
-    ctx.font =
-        "bold 15px Arial";
+  function applyState(state){
+    if(!state || typeof state !== 'object') return;
+    ids.forEach(id => {
+      if(id in state) inputs[id].value = state[id] || '';
+    });
+    networkFieldIds.forEach(id => {
+      if(!(id in state)) return;
+      const el = networkInputs[id];
+      if(el.type === 'checkbox') el.checked = !!state[id];
+      else el.value = state[id] || '';
+    });
+    transformOptions.forEach(t => {
+      if(t.id in state) transformInputs[t.id].checked = !!state[t.id];
+    });
+    if('nodeTypeCount' in state){
+      nodeTypeCount = Math.min(Math.max(parseInt(state.nodeTypeCount, 10) || 1, 1), MAX_TYPES);
+    }
+    nodeFieldIds.forEach(id => {
+      if(id in state) document.getElementById(id).value = state[id] || '';
+    });
+    updateNodeTypeVisibility();
+    if('edgeTypeCount' in state){
+      edgeTypeCount = Math.min(Math.max(parseInt(state.edgeTypeCount, 10) || 1, 1), MAX_TYPES);
+    }
+    edgeFieldIds.forEach(id => {
+      if(id in state) document.getElementById(id).value = state[id] || '';
+    });
+    updateEdgeTypeVisibility();
+  }
 
-    ctx.textAlign =
-        "left";
+  function buildShareUrl(){
+    const json = JSON.stringify(collectState());
+    const base = location.origin + location.pathname;
+    return base + '?data=' + encodeURIComponent(json);
+  }
 
-    ctx.fillText(
-        "Transformations",
-        18,
-        cursorY
-    );
+  function loadStateFromUrl(){
+    try{
+      const raw = new URLSearchParams(location.search).get('data');
+      if(raw) applyState(JSON.parse(raw));
+    }catch(e){
+      console.error('Could not load shared data from URL', e);
+    }
+  }
 
-    cursorY += 18;
+  document.getElementById('shareBtn').addEventListener('click', async () => {
+    const btn = document.getElementById('shareBtn');
+    const original = btn.textContent;
+    const url = buildShareUrl();
+    try{
+      await navigator.clipboard.writeText(url);
+      btn.textContent = 'Link copied!';
+    }catch(e){
+      window.prompt('Copy this link:', url);
+    }
+    setTimeout(() => { btn.textContent = original; }, 2000);
+  });
 
-    ctx.font =
-        "15px Arial";
+  document.getElementById('resetBtn').addEventListener('click', () => {
+    ids.forEach(id => {
+      if(id === 'networkName') inputs[id].value = '';
+      else inputs[id].value = 0;
+    });
+    transformOptions.forEach(t => transformInputs[t.id].checked = false);
+    networkFieldIds.forEach(id => {
+      if(networkInputs[id].type === 'checkbox') networkInputs[id].checked = false;
+      else if(id === 'multipleUnit') networkInputs[id].value = 'waves';
+      else networkInputs[id].value = '';
+    });
+    nodeTypeCount = 1;
+    nodeFieldIds.forEach(id => { document.getElementById(id).value = ''; });
+    updateNodeTypeVisibility();
+    edgeTypeCount = 1;
+    edgeFieldIds.forEach(id => { document.getElementById(id).value = ''; });
+    updateEdgeTypeVisibility();
+    render();
+  });
 
-    ctx.fillText(
-        transformations.length > 0
-            ? transformations.join(" • ")
-            : "None",
-        leftX,
-        cursorY
-    );
+  document.getElementById('downloadBtn').addEventListener('click', async () => {
+    const btn = document.getElementById('downloadBtn');
+    const original = btn.textContent;
+    btn.disabled = true;
+    btn.textContent = 'Building PDF…';
+    try{
+      const target = document.getElementById('nutritionLabel');
 
-    cursorY += 18;
+      // Make sure the update "flash" highlight isn't mid-transition —
+      // otherwise its tint gets baked into the captured image.
+      target.classList.remove('flash');
+      void target.offsetWidth; // force reflow so the class removal takes effect
 
-    drawLine(cursorY,1);
+      // Capture with a transparent background instead of the label's
+      // normal white fill.
+      const prevBg = target.style.backgroundColor;
+      target.style.backgroundColor = 'transparent';
+      const canvas = await html2canvas(target, { scale: 3, backgroundColor: null });
+      target.style.backgroundColor = prevBg;
 
-    cursorY += 14;
+      const imgData = canvas.toDataURL('image/png');
 
-    ctx.font =
-        "11px Arial";
+      const { jsPDF } = window.jspdf;
+      // convert canvas px to mm at 96dpi baseline, keep aspect ratio
+      const pxToMm = px => px * 25.4 / (96 * 3);
+      const wMm = pxToMm(canvas.width);
+      const hMm = pxToMm(canvas.height);
+      const margin = 0;
 
-    ctx.fillText(
-        "Guidelines for Reporting About Network Data (https://www.grand-statement.org)",
-        18,
-        cursorY
-    );
-}
+      const pageWidth = wMm + margin * 2;
+      const pageHeight = hMm + margin * 2;
 
-/* ---------------- ACTIONS ---------------- */
+      const pdf = new jsPDF({
+        orientation: pageWidth > pageHeight ? 'landscape' : 'portrait',
+        unit: 'mm',
+        format: [pageWidth, pageHeight]
+      });
 
-function generateLabel(){
+      pdf.addImage(imgData, 'PNG', margin, margin, wMm, hMm);
 
-    layout("draw");
-}
+      // The footer (including the URL) is baked into the label image above.
+      // Overlay an invisible clickable region exactly over the rendered URL
+      // text so it still works as a live link in the PDF.
+      const linkEl = document.getElementById('footerLink');
+      const labelRect = target.getBoundingClientRect();
+      const linkRect = linkEl.getBoundingClientRect();
+      const scaleX = wMm / labelRect.width;
+      const scaleY = hMm / labelRect.height;
+      const linkX = margin + (linkRect.left - labelRect.left) * scaleX;
+      const linkY = margin + (linkRect.top - labelRect.top) * scaleY;
+      const linkW = linkRect.width * scaleX;
+      const linkH = linkRect.height * scaleY;
+      pdf.link(linkX, linkY, linkW, linkH, { url: FOOTER_URL });
 
-function downloadLabel(){
+      pdf.save('nutrition-facts-label.pdf');
+    }catch(err){
+      console.error(err);
+      alert('Something went wrong building the PDF. Please try again.');
+    }finally{
+      btn.disabled = false;
+      btn.textContent = original;
+    }
+  });
 
-    generateLabel();
-
-    const link =
-        document.createElement("a");
-
-    link.download =
-        "network-facts-label.png";
-
-    link.href =
-        canvas.toDataURL("image/png");
-
-    link.click();
-}
-
-/* ---------------- INIT ---------------- */
-
-renderNodeInputs();
-
-renderEdgeInputs();
-
-generateLabel();
-
+  loadStateFromUrl();
+  render();
 </script>
-
 </body>
 </html>
